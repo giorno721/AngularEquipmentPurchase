@@ -1,0 +1,16 @@
+<div class="d-flex flex-row bd-highlight mb-9">
+  <div class="p-2 w-100 bd-highlight">
+
+    <div class="input-group mb-12">
+      <span class="input-group-text"> Equipment Name</span>
+      <input type="text" class="form-control" [(ngModel)]="Name">
+    </div>
+  </div>
+</div>
+<button (click)="addEquipment()" *ngIf="equip.Id == '0'" class="btn btn-primary">
+  Add
+</button>
+
+<button (click)="updateEquipment()" *ngIf="equip.Id !='0'" class="btn btn-primary">
+  Update
+</button>
