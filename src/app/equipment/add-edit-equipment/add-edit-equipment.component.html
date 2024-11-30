@@ -1,6 +1,19 @@
 <div class="d-flex flex-row bd-highlight mb-9">
   <div class="p-2 w-100 bd-highlight">
 
+    <!-- Equipment Category Id -->
+    <div class="form-group">
+      <label for="equipmentId">Equipment Id</label>
+      <input
+        id="equipmentId"
+        type="number"
+        class="form-control"
+        [(ngModel)]="EquipmentId"
+        (ngModelChange)="onInputChange('EquipmentId')"
+        placeholder="Enter equipment id"
+        required
+      />
+    </div>
 
     <!-- Equipment Category Id -->
     <div class="form-group">
@@ -72,16 +85,16 @@
       />
     </div>
 
-    <!-- Brand ID -->
+    <!-- Brand Id -->
     <div class="form-group">
-      <label for="brandId">Brand ID</label>
+      <label for="brandId">Brand Id</label>
       <input
         id="brandId"
         type="number"
         class="form-control"
         [(ngModel)]="BrandId"
         (ngModelChange)="onInputChange('BrandId')"
-        placeholder="Enter brand ID"
+        placeholder="Enter Brand id"
         min="1"
         max="84"
         required
@@ -112,11 +125,11 @@
     </div>
 <br>
     <!-- Buttons -->
-    <button (click)="addEquipment()" *ngIf="equip.Id == '0'" class="btn btn-primary">
+    <button (click)="addEquipment()" *ngIf="equip.EquipmentId == '0'" class="btn btn-primary">
       Add
     </button>
 
-    <button (click)="updateEquipment()" *ngIf="equip.Id != '0'" class="btn btn-primary">
+    <button (click)="updateEquipment()" *ngIf="equip.EquipmentId != '0'" class="btn btn-primary">
       Update
     </button>
   </div>

@@ -34,10 +34,13 @@ export class ShowEquipmentComponent implements OnInit{
 
   addClick() {
     this.equip = {
-      Id: "0",
+      EquipmentId: "0",
       EquipmentCategoryId: "",
       Name: "",
-      Description: ""
+      Expiry: "",
+      Description: "",
+      BrandId: "",
+      Model: ""
     }
     this.ModalTitle = "Add Equipment";
     this.ActivateAddEditEquipComp = true;
@@ -45,13 +48,13 @@ export class ShowEquipmentComponent implements OnInit{
 
   editClick(item : any) {
     this.equip = item;
-    this.ModalTitle = "Edit Department";
+    this.ModalTitle = "Edit Equipment";
     this.ActivateAddEditEquipComp = true;
   }
 
   deleteClick(item: any) {
     if (confirm('Are you sure??')) {
-      this.service.deleteEquipment(item.Id).subscribe(data => {
+      this.service.deleteEquipment(item.EquipmentId).subscribe(data => {
         alert(data.toString());
         this.refreshEquipList();
       })

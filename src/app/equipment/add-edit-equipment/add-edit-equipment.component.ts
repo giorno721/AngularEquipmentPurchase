@@ -17,7 +17,7 @@ export class AddEditEquipmentComponent implements OnInit{
   constructor(private service: ApiService) { }
 
   @Input() equip: any;
-  Id = 0;
+  EquipmentId = 0;
   EquipmentCategoryId = 1;
   Name = "";
   Expiry = "";
@@ -26,9 +26,13 @@ export class AddEditEquipmentComponent implements OnInit{
   Model = "";
 
   ngOnInit(): void {
-    this.Id = this.equip.Id;
+    this.EquipmentId = this.equip.EquipmentId;
     this.EquipmentCategoryId = this.equip.EquipmentCategoryId;
     this.Name = this.equip.Name;
+    this.Expiry = this.equip.Expiry;
+    this.Description = this.equip.Description;
+    this.BrandId = this.equip.BrandId;
+    this.Model = this.equip.Model;
   }
   // Field interaction tracking
   fieldInteraction: { [key: string]: boolean } = {};
@@ -45,6 +49,7 @@ export class AddEditEquipmentComponent implements OnInit{
 
   addEquipment() {
     var equip = {
+      EquipmentId: this.EquipmentId,
       EquipmentCategoryId: this.EquipmentCategoryId,
       Name: this.Name,
       Expiry: this.Expiry,
@@ -59,8 +64,13 @@ export class AddEditEquipmentComponent implements OnInit{
 
   updateEquipment() {
     var equip = {
-      Id: this.Id,
-      DepartmentName: this.Name
+      EquipmentId: this.EquipmentId,
+      EquipmentCategoryId: this.EquipmentCategoryId,
+      Name: this.Name,
+      Expiry: this.Expiry,
+      Description: this.Description,
+      BrandId: this.BrandId,
+      Model: this.Model
     };
     this.service.updateEquipment(equip).subscribe(res => {
       alert(res.toString());
