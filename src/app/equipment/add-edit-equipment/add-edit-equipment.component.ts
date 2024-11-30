@@ -18,18 +18,39 @@ export class AddEditEquipmentComponent implements OnInit{
 
   @Input() equip: any;
   Id = 0;
-  EquipmentCategoryId = 0;
+  EquipmentCategoryId = 1;
   Name = "";
+  Expiry = "";
+  Description = "";
+  BrandId = 1;
+  Model = "";
 
   ngOnInit(): void {
     this.Id = this.equip.Id;
     this.EquipmentCategoryId = this.equip.EquipmentCategoryId;
     this.Name = this.equip.Name;
   }
+  // Field interaction tracking
+  fieldInteraction: { [key: string]: boolean } = {};
+
+  // Method to track user interaction
+  onInputChange(field: string) {
+    this.fieldInteraction[field] = true;
+  }
+
+  // Check if a field is invalid and the user has interacted with it
+  isFieldInvalid(field: string): boolean {
+    return !!this.fieldInteraction[field];
+  }
 
   addEquipment() {
     var equip = {
-      DepartmentName: this.Name
+      EquipmentCategoryId: this.EquipmentCategoryId,
+      Name: this.Name,
+      Expiry: this.Expiry,
+      Description: this.Description,
+      BrandId: this.BrandId,
+      Model: this.Model
     };
     this.service.addEquipment(equip).subscribe(res => {
       alert(res.toString());

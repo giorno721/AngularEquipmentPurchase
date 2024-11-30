@@ -1,16 +1,123 @@
 <div class="d-flex flex-row bd-highlight mb-9">
   <div class="p-2 w-100 bd-highlight">
 
-    <div class="input-group mb-12">
-      <span class="input-group-text"> Equipment Name</span>
-      <input type="text" class="form-control" [(ngModel)]="Name">
+
+    <!-- Equipment Category Id -->
+    <div class="form-group">
+      <label for="equipmentCategoryId">Equipment Category Id</label>
+      <input
+        id="equipmentCategoryId"
+        type="number"
+        class="form-control"
+        [(ngModel)]="EquipmentCategoryId"
+        (ngModelChange)="onInputChange('EquipmentCategoryId')"
+        placeholder="Enter equipment category id"
+        min="1"
+        max="10"
+        required
+      />
+      <small
+        class="text-danger"
+        *ngIf="isFieldInvalid('EquipmentCategoryId') && (EquipmentCategoryId < 1 || EquipmentCategoryId > 10)">
+        EquipmentCategoryId must be between 1 and 10.
+      </small>
     </div>
+
+    <!-- Equipment Name -->
+    <div class="form-group">
+      <label for="name">Equipment Name</label>
+      <input
+        id="name"
+        type="text"
+        class="form-control"
+        [(ngModel)]="Name"
+        (ngModelChange)="onInputChange('Name')"
+        placeholder="Enter equipment name"
+        maxlength="50"
+        required
+      />
+      <small class="text-danger" *ngIf="isFieldInvalid('Name') && !Name">
+        Name is required and must not exceed 50 characters.
+      </small>
+    </div>
+
+    <!-- Expiry -->
+    <div class="form-group">
+      <label for="expiry">Expiry</label>
+      <input
+        id="expiry"
+        type="text"
+        class="form-control"
+        [(ngModel)]="Expiry"
+        (ngModelChange)="onInputChange('Expiry')"
+        placeholder="Enter expiry details"
+        maxlength="50"
+        required
+      />
+      <small class="text-danger" *ngIf="isFieldInvalid('Expiry') && !Expiry">
+        Expiry is required and must not exceed 50 characters.
+      </small>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        id="description"
+        type="text"
+        class="form-control"
+        [(ngModel)]="Description"
+        (ngModelChange)="onInputChange('Description')"
+        placeholder="Enter description"
+      />
+    </div>
+
+    <!-- Brand ID -->
+    <div class="form-group">
+      <label for="brandId">Brand ID</label>
+      <input
+        id="brandId"
+        type="number"
+        class="form-control"
+        [(ngModel)]="BrandId"
+        (ngModelChange)="onInputChange('BrandId')"
+        placeholder="Enter brand ID"
+        min="1"
+        max="84"
+        required
+      />
+      <small
+        class="text-danger"
+        *ngIf="isFieldInvalid('BrandId') && (BrandId < 1 || BrandId > 84)">
+        BrandId must be between 1 and 84.
+      </small>
+    </div>
+
+    <!-- Model -->
+    <div class="form-group">
+      <label for="model">Model</label>
+      <input
+        id="model"
+        type="text"
+        class="form-control"
+        [(ngModel)]="Model"
+        (ngModelChange)="onInputChange('Model')"
+        placeholder="Enter model"
+        maxlength="25"
+        required
+      />
+      <small class="text-danger" *ngIf="isFieldInvalid('Model') && !Model">
+        Model is required and must not exceed 25 characters.
+      </small>
+    </div>
+<br>
+    <!-- Buttons -->
+    <button (click)="addEquipment()" *ngIf="equip.Id == '0'" class="btn btn-primary">
+      Add
+    </button>
+
+    <button (click)="updateEquipment()" *ngIf="equip.Id != '0'" class="btn btn-primary">
+      Update
+    </button>
   </div>
 </div>
-<button (click)="addEquipment()" *ngIf="equip.Id == '0'" class="btn btn-primary">
-  Add
-</button>
-
-<button (click)="updateEquipment()" *ngIf="equip.Id !='0'" class="btn btn-primary">
-  Update
-</button>
