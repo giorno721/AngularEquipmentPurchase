@@ -72,8 +72,14 @@ export class AddEditEquipmentComponent implements OnInit{
       BrandId: this.BrandId,
       Model: this.Model
     };
-    this.service.updateEquipment(equip).subscribe(res => {
-      alert(res.toString());
+    this.service.updateEquipment(this.EquipmentId, equip).subscribe({
+      next: () => {
+        alert('Equipment updated successfully!');
+      },
+      error: (err) => {
+        console.error('Error updating equipment:', err);
+        alert('Failed to update equipment.');
+      }
     });
   }
 

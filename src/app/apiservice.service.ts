@@ -19,13 +19,27 @@ export class ApiService {
     return this.http.post<any>(this.apiUrl + 'Equipment', equip, httpOptions)
   }
 
-  updateEquipment(equip : any): Observable<any>{
-    const httpOptions = { headers : new HttpHeaders({ 'Content-Type': 'application/json' })}
-    return this.http.put<any>(this.apiUrl + 'Equipment', equip, httpOptions)
+  updateEquipment(id: number, equip: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.put<any>(`${this.apiUrl}Equipment/${id}`, equip, httpOptions);
   }
 
-  deleteEquipment(equipId : number): Observable<any>{
+  // Manager
+  getManagerList(): Observable<any[]>{
+    return this.http.get<any[]>(this.apiUrl + 'Manager')
+  }
+
+  addManager(manager : any): Observable<any>{
     const httpOptions = { headers : new HttpHeaders({ 'Content-Type': 'application/json' })}
-    return this.http.delete<number>(this.apiUrl + 'Equipment' + equipId, httpOptions)
+    return this.http.post<any>(this.apiUrl + 'Manager', manager, httpOptions)
+  }
+
+  updateManager(id: number, manager: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.put<any>(`${this.apiUrl}Manager/${id}`, manager, httpOptions);
   }
 }

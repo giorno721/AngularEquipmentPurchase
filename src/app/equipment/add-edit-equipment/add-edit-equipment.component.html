@@ -1,17 +1,16 @@
 <div class="d-flex flex-row bd-highlight mb-9">
   <div class="p-2 w-100 bd-highlight">
 
-    <!-- Equipment Category Id -->
+    <!-- Equipment Id -->
     <div class="form-group">
       <label for="equipmentId">Equipment Id</label>
       <input
         id="equipmentId"
         type="number"
-        class="form-control"
+        class="form-control unavailable-field"
         [(ngModel)]="EquipmentId"
-        (ngModelChange)="onInputChange('EquipmentId')"
-        placeholder="Enter equipment id"
-        required
+        readonly
+        placeholder="Equipment Id"
       />
     </div>
 
