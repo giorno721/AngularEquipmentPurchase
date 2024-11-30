@@ -10,9 +10,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" (click)="closeClick()">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <!-- Close Button Positioned to the Right -->
+        <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close" (click)="closeClick()"></button>
       </div>
       <div class="modal-body">
         <app-add-edit-equipment [equip]="equip" *ngIf="ActivateAddEditEquipComp">
@@ -21,6 +20,7 @@
     </div>
   </div>
 </div>
+
 
 <table class="table table-striped">
   <thead>
