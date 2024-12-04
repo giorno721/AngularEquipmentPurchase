@@ -3,6 +3,8 @@ import { ApiService} from '../../apiservice.service';
 import {AddEditEquipmentComponent} from '../add-edit-equipment/add-edit-equipment.component';
 import {FormsModule} from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @Component({
   selector: 'app-show-equipment',
@@ -11,7 +13,8 @@ import {NgForOf, NgIf} from '@angular/common';
     AddEditEquipmentComponent,
     FormsModule,
     NgIf,
-    NgForOf
+    NgForOf,
+    NgxPaginationModule
   ],
   templateUrl: './show-equipment.component.html',
   styleUrl: './show-equipment.component.css'
@@ -23,6 +26,8 @@ export class ShowEquipmentComponent implements OnInit{
   ModalTitle = "";
   ActivateAddEditEquipComp: boolean = false;
   equip: any;
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
 
 
   ngOnInit(): void {

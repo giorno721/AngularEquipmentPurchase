@@ -32,7 +32,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let dataItem of ManagerList">
+  <tr *ngFor="let dataItem of ManagerList | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
     <td>{{dataItem.Name}}</td>
     <td>{{dataItem.Surname}}</td>
     <td>
@@ -59,3 +59,14 @@
   </tr>
   </tbody>
 </table>
+
+<div class="d-flex justify-content-center mt-3">
+  <pagination-controls
+    (pageChange)="currentPage = $event"
+    [responsive]="true"
+    [autoHide]="false"
+    [maxSize]="5"
+    previousLabel="Previous"
+    nextLabel="Next">
+  </pagination-controls>
+</div>

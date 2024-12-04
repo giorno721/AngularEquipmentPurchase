@@ -31,13 +31,6 @@ export class ApiService {
     return this.http.get<any[]>(this.apiUrl + 'Manager')
   }
 
-/*
-  addManager(manager : any): Observable<any>{
-    const httpOptions = { headers : new HttpHeaders({ 'Content-Type': 'application/json' })}
-    return this.http.post<any>(this.apiUrl + 'Manager', manager, httpOptions)
-  }
-*/
-
   addManager(manager: FormData): Observable<any> {
     return this.http.post<any>(this.apiUrl + 'Manager', manager);
   }
@@ -46,10 +39,4 @@ export class ApiService {
     return this.http.put<any>(`${this.apiUrl}Manager/${id}`, manager);
   }
 
-/*  updateManager(id: number, manager: any): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-    return this.http.put<any>(`${this.apiUrl}Manager/${id}`, manager, httpOptions);
-  }*/
 }

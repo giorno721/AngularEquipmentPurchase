@@ -1,20 +1,24 @@
-/*
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 body {
-  background: #e4e4e4;
-  padding: 5px;
+  font-family: "Roboto Slab", serif; /* Elegant serif font */
+  color: #333;
   height: 100vh;
-  margin: 0;
-
-  font: 500 100% system-ui, sans-serif;
-  text-transform: uppercase;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .page-wrap {
   background: white;
   height: calc(100vh - 10px);
   box-shadow: 0 0 3px rgba(black, 0.33);
+  border-radius: 12px;
+
 
   display: grid;
   grid-template-columns: minmax(10px, 1fr) minmax(10px, 3fr);
@@ -23,7 +27,6 @@ body {
 
   > * {
     padding: 1rem;
-    text-align: center;
   }
 
   @media (max-width: 600px) {
@@ -38,29 +41,87 @@ body {
 
 .page-header {
   grid-column: 1 / -1;
-  background: #ffcdd2;
+  background: #0d6efd; /* Vibrant green */
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .page-sidebar {
   grid-column: 1 / 2;
   grid-row: 2 / 4;
-  background: #e1bee7;
-}
-.page-nav {
-  grid-column: 2 / 3;
-  background: #bbdefb;
-}
-.page-main {
-  grid-column: 2 / 3;
-  background: #dcedc8;
-}
-.page-footer {
-  grid-column: 1 / -1;
-  background: #ffecb3;
+  background: #ffffff;
+  color: #fff;
+  text-align: center;
+
+  border-radius: 25px; /* Rounded corners */
+  padding: 25px; /* Adds spacing inside the sidebar */
+  width: 100%;
+  box-shadow: 1px 1px 10px 5px rgba(0.1, 0.1, 0.1, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
 }
 
-details p {
-  text-transform: none;
-  text-align: left;
+.page-nav {
+  grid-column: 2 / 3;
+  background: #ffffff; /* Lighter green for harmony */
+  color: #333333;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 500;
+  text-align: center;
 }
-*/
+
+.page-main {
+  grid-column: 2 / 3;
+  background: #ffffff; /* Slightly darker green for balance */
+  line-height: 1.6;
+  font-family: "Roboto", sans-serif; /* Clean font for readability */
+}
+
+.page-footer {
+  grid-column: 1 / -1;
+  background: #0d6efd; /* Vibrant green */
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-align: center;
+
+}
+button {
+  background: #0d6efd; /* Bright blue */
+  color: #fff; /* White text for contrast */
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+  padding: 12px 24px; /* Comfortable padding */
+  border: none; /* Clean look */
+  border-radius: 8px; /* Smooth, rounded corners */
+  cursor: pointer; /* Pointer cursor for interactivity */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; /* Smooth hover and click effects */
+}
+
+button:hover {
+  background: #0056d2; /* Slightly darker blue for hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Enhanced shadow for hover */
+}
+
+button:active {
+  background: #003a9b; /* Darker blue for active state */
+  transform: translateY(0); /* Reset lift */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Reduced shadow for click */
+}
+
+button:disabled {
+  background: #b3d7ff; /* Soft muted blue for disabled state */
+  color: #9e9e9e; /* Gray text */
+  cursor: not-allowed; /* Disabled cursor */
+  box-shadow: none; /* No shadow for disabled */
+}
