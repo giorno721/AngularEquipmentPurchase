@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {NgIf} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthInterceptor} from '../auth.interceptor';
+import {AuthInterceptor} from '../interceptor/auth.interceptor';
 
 @Component({
   selector: 'app-login',
