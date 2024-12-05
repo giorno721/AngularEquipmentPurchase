@@ -1,29 +1,11 @@
-<!--
-<div class="container">
-  <h3 class="d-flex justify-content-center">Angular CRUD using .Net Core Web API </h3>
-  <nav class="navbar navbar-expand-sm bg-light navbar-dark">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <button routerLink="equipment" class="m-1 btn btn-light btn-outline-primary" Button>Equipment</button>
-      </li>
-      <li class="nav-item">
-        <button routerLink="manager" class="m-1 btn btn-light btn-outline-primary" Button>Managers</button>
-      </li>
-    </ul>
-  </nav>
-  <router-outlet></router-outlet>
-</div>
--->
-
-
-<div class="page-wrap">
-  <header class="page-header">
-    Football Club
+<div [ngClass]="isLoginPage ? 'page-wrap-login' : 'page-wrap'">
+<header class="page-header">
+    Football Manager
   </header>
-  <main class="page-main">
+  <main [ngClass]="{ 'page-main-full': isLoginPage, 'page-main': !isLoginPage }">
     <router-outlet></router-outlet>
   </main>
-  <aside class="page-sidebar">
+  <aside class="page-sidebar" *ngIf="!isLoginPage">
     <ul class="navbar-nav">
       <li class="nav-item">
         <button routerLink="equipment" class="m-1 btn btn-light btn-outline-primary" Button>Equipment</button>
@@ -34,6 +16,6 @@
     </ul>
     </aside>
   <footer class="page-footer">
-    &#64;Copyright 2024/2025
+    &#64;2024/2025
   </footer>
 </div>

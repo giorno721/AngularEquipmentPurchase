@@ -13,6 +13,15 @@ body {
   align-items: center;
 }
 
+/* For login page (full width) */
+.page-main-full {
+  margin: 0; /* No margin since there's no sidebar */
+  padding: 0;
+  display: contents;
+  justify-content: center;
+  height: calc(100vh - 100px); /* Full height minus header/footer */
+}
+
 .page-wrap {
   background: white;
   height: calc(100vh - 10px);
@@ -21,6 +30,30 @@ body {
 
 
   display: grid;
+  grid-template-columns: minmax(10px, 1fr) minmax(10px, 3fr);
+  grid-template-rows: min-content min-content 1fr min-content;
+  gap: 1px;
+
+  > * {
+    padding: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+    > * {
+      grid-column: 1 / -1 !important;
+      grid-row: auto !important;
+    }
+  }
+}
+.page-wrap-login {
+  background: white;
+  height: calc(100vh - 10px);
+  box-shadow: 0 0 3px rgba(black, 0.33);
+  border-radius: 12px;
+
+
   grid-template-columns: minmax(10px, 1fr) minmax(10px, 3fr);
   grid-template-rows: min-content min-content 1fr min-content;
   gap: 1px;

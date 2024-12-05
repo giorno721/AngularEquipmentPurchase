@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable} from 'rxjs';
+import {catchError, Observable, tap, throwError} from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   readonly apiUrl = 'https://localhost:7031/api/'
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   // Equipment
   getEquipmentList(): Observable<any[]>{
@@ -15,15 +17,11 @@ export class ApiService {
   }
 
   addEquipment(equip : any): Observable<any>{
-    const httpOptions = { headers : new HttpHeaders({ 'Content-Type': 'application/json' })}
-    return this.http.post<any>(this.apiUrl + 'Equipment', equip, httpOptions)
+    return this.http.post<any>(this.apiUrl + 'Equipment', equip)
   }
 
   updateEquipment(id: number, equip: any): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-    return this.http.put<any>(`${this.apiUrl}Equipment/${id}`, equip, httpOptions);
+    return this.http.put<any>(`${this.apiUrl}Equipment/${id}`, equip);
   }
 
   // Manager
@@ -39,4 +37,35 @@ export class ApiService {
     return this.http.put<any>(`${this.apiUrl}Manager/${id}`, manager);
   }
 
+  // Authenticate user and store token
+  authenticateUser(credentials: { username: string; password: string }): Observable<any> {
+    const url = `${this.apiUrl}User/authenticate`;
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+
+    return this.http.post<any>(url, credentials, httpOptions).pipe(
+      tap((response) => this.storeToken(response?.Token)),
+      catchError((error) => this.handleAuthenticationError(error))
+    );
+  }
+
+  // Store token in localStorage
+  private storeToken(token: string | undefined): void {
+    if (token) {
+      localStorage.setItem('authToken', token);
+    }
+  }
+
+  // Handle authentication errors
+  private handleAuthenticationError(error: any): Observable<never> {
+    if (error.status === 401 || error.status === 400) { // чистить токен при неправильному вводі
+      this.clearAuthToken();
+      this.router.navigate(['/login']).then(r => {});
+    }
+    return throwError(() => error);
+  }
+
+  // Clear authentication token
+  private clearAuthToken(): void {
+    localStorage.removeItem('authToken');
+  }
 }
